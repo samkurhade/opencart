@@ -35,6 +35,7 @@ public class BaseClass {
 		logger = LogManager.getLogger(this.getClass());
 
 		if (br.equals("chrome")) {
+			//Below 2 statements to avoid " Chrome is being controlled by Automated Software "
 			ChromeOptions options = new ChromeOptions();
 			options.setExperimentalOption("excludeSwitches", new String[] { "enable-automation" });
 			driver = new ChromeDriver(options);
@@ -54,8 +55,10 @@ public class BaseClass {
 	}
 
 	@AfterClass(groups = {"Master","Sanity","Regression"})
-	public void tearDown() {
-		driver.quit();
+	public void tearDown() throws InterruptedException {
+//		Thread.sleep(4000);
+//		driver.quit();
+//		driver.close();
 	}
 
 	public String randomString() {
